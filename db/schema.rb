@@ -10,9 +10,38 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20180902170256) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "albums", force: :cascade do |t|
+    t.string "name"
+    t.integer "year"
+    t.integer "total_duration"
+    t.bigint "artist_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["artist_id"], name: "index_albums_on_artist_id"
+  end
+
+  create_table "artists", force: :cascade do |t|
+    t.string "name"
+    t.integer "birth_year"
+    t.integer "first_album_year"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "songs", force: :cascade do |t|
+    t.string "name"
+    t.integer "duration"
+    t.bigint "album_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["album_id"], name: "index_songs_on_album_id"
+  end
+
+  add_foreign_key "albums", "artists"
+  add_foreign_key "songs", "albums"
 end
