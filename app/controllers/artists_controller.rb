@@ -69,6 +69,8 @@ class ArtistsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def artist_params
+      # require: Tira un error si los parametros indicados no estan presentes.
+      # permit: Copia el hash params, pero solo con los parametros permitidos.
       params.require(:artist).permit(:name, :birth_year, :first_album_year)
     end
 end
