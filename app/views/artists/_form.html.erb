@@ -11,8 +11,13 @@
     </div>
   <% end %>
 
+  <!--Una seccion del form-->
   <div class="field">
-    <%= form.label :name %>
+    <!--Lo que sale arriba del espacio donde escriben en esta seccion-->
+    <%= form.label :name %> 
+    <!--El espacio donde escriben, checkean, suben archivos, etc...
+        Acepta opciones. Se le puede dar un id para poder referenciarlo
+        en el controlador (en los parametros).-->
     <%= form.text_field :name, id: :artist_name %>
   </div>
 
@@ -26,7 +31,7 @@
     <%= form.number_field :first_album_year, id: :artist_first_album_year %>
   </div>
 
-  <div class="actions">
+  <div class="action">
     <%= form.submit %>
   </div>
 <% end %>
