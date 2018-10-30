@@ -12,7 +12,42 @@
 //
 //= require rails-ujs
 //= require turbolinks
-//= require_tree .
 //= require jquery3
+//= require jquery.validate
+//= require jquery.validate.additional-methods
 //= require popper
 //= require bootstrap-sprockets
+//= require_tree .
+
+
+$(document).ready(function(){
+  $('#new_user').validate({
+    rules: {
+      'user[email]': {
+        required: true,
+        email:true,
+      },
+      'user[password]': {
+        required: true,
+        minlength: 6,
+      },
+      'user[password_confirmation]': {
+        required: true,
+        equalTo: '#user_password',
+      }
+    },
+    messages: {
+      mail: {
+        required: 'Email is required',
+        email: 'Please enter a valid email address',
+      },
+      password: {
+        required: 'Password is required',
+      },
+      password_confirmation: {
+        required: 'Password confirmation is required',
+        equalTo: 'Password and password confirmation must be the same',
+      }
+    }
+  })
+})

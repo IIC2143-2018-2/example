@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!, only: [:info]
-  def info
-  end
+  def info; end
 end

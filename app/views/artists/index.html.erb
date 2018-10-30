@@ -8,24 +8,16 @@
       <th scope="col">Name</th>
       <th scope="col">Birth year</th>
       <th scope="col">First album year</th>
-      <th scope="col" colspan="3"></th>
+      <th scope="col" colspan="4"></th>
     </tr>
   </thead>
 
-  <tbody>
-    <% @artists.each do |artist| %>
-      <tr>
-        <td><%= artist.name %></td>
-        <td><%= artist.birth_year %></td>
-        <td><%= artist.first_album_year %></td>
-        <td><%= link_to 'Show', artist %></td>
-        <td><%= link_to 'Edit', edit_artist_path(artist) %></td>
-        <td><%= link_to 'Destroy', artist, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
+  <tbody id="artists">
+    <%= render @artists %>
   </tbody>
 </table>
 
 <br>
 
-<%= link_to 'New Artist', new_artist_path %>
+<h2>Create Artist</h2>
+<%= render 'form', artist: @artist %>

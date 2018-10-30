@@ -1,16 +1,16 @@
 class ArtistsController < ApplicationController
-  before_action :set_artist, only: [:show, :edit, :update, :destroy]
+  before_action :set_artist, only: %i[show edit update destroy]
 
   # GET /artists
   # GET /artists.json
   def index
     @artists = Artist.all
+    @artist = Artist.new
   end
 
   # GET /artists/1
   # GET /artists/1.json
-  def show
-  end
+  def show; end
 
   # GET /artists/new
   def new
@@ -18,8 +18,7 @@ class ArtistsController < ApplicationController
   end
 
   # GET /artists/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /artists
   # POST /artists.json
@@ -30,6 +29,7 @@ class ArtistsController < ApplicationController
       if @artist.save
         format.html { redirect_to @artist, notice: 'Artist was successfully created.' }
         format.json { render :show, status: :created, location: @artist }
+        format.js
       else
         format.html { render :new }
         format.json { render json: @artist.errors, status: :unprocessable_entity }
@@ -62,15 +62,16 @@ class ArtistsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_artist
-      @artist = Artist.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def artist_params
-      # require: Tira un error si los parametros indicados no estan presentes.
-      # permit: Copia el hash params, pero solo con los parametros permitidos.
-      params.require(:artist).permit(:name, :birth_year, :first_album_year)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_artist
+    @artist = Artist.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def artist_params
+    # require: Tira un error si los parametros indicados no estan presentes.
+    # permit: Copia el hash params, pero solo con los parametros permitidos.
+    params.require(:artist).permit(:name, :birth_year, :first_album_year)
+  end
 end

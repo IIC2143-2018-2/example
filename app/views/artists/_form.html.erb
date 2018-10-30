@@ -1,4 +1,4 @@
-<%= form_with(model: artist, local: true) do |form| %>
+<%= form_with(model: artist) do |form| %>
   <% if artist.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(artist.errors.count, "error") %> prohibited this artist from being saved:</h2>
@@ -14,7 +14,7 @@
   <!--Una seccion del form-->
   <div class="field">
     <!--Lo que sale arriba del espacio donde escriben en esta seccion-->
-    <%= form.label :name %> 
+    <%= form.label :name %>
     <!--El espacio donde escriben, checkean, suben archivos, etc...
         Acepta opciones. Se le puede dar un id para poder referenciarlo
         en el controlador (en los parametros).-->
@@ -32,6 +32,6 @@
   </div>
 
   <div class="action">
-    <%= form.submit %>
+    <%= form.submit "Create", class: "btn btn-primaty" %>
   </div>
 <% end %>
